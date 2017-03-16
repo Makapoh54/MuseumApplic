@@ -4,7 +4,14 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <!--Github List Dimensions-->
-    <dimen name="padding_list_iteam">10dp</dimen>
+    <dimen name="height_list_tile">88dp</dimen>
+    <dimen name="padding_list_text">16dp</dimen>
     <dimen name="size_list_icon">64dp</dimen>
+    <dimen name="padding_list_icon">16dp</dimen>
+    <dimen name="padding_list_above">8dp</dimen>
+
+    <!--Github List TextSizes-->
+    <dimen name="ts_list_item_title">16sp</dimen>
+    <dimen name="ts_list_item_content">14sp</dimen>
 
 </resources>

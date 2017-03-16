@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GithubTrends</string>
+
+    <string name="placeholder">Placeholder</string>
 </resources>
