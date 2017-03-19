@@ -2,4 +2,16 @@
     <string name="app_name">GithubTrends</string>
 
     <string name="placeholder">Placeholder</string>
+
+    <!--GithubList item-->
+    <string name="list_item_no_language">No specific language</string>
+    <string name="list_item_no_org">No specific organisation</string>
+
+    <!--Contributor Details-->
+    <string name="details_bio_title">Biography</string>
+    <string name="details_no_bio">No Biography Specified</string>
+    <string name="details_no_email">No Email Specified</string>
+
+    <!--Error messages-->
+    <string name="error_no_repositories">Error. Cannot retrieve repos list</string>
 </resources>

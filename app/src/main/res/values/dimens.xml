@@ -14,4 +14,12 @@
     <dimen name="ts_list_item_title">16sp</dimen>
     <dimen name="ts_list_item_content">14sp</dimen>
 
+    <!--Top Contributor Activity Dimensions-->
+    <dimen name="size_details_icon">96dp</dimen>
+    <dimen name="margin_details_text">16dp</dimen>
+
+    <!--Top Contributor Activity TextSizes-->
+    <dimen name="ts_details_title">16sp</dimen>
+    <dimen name="ts_details_content">14sp</dimen>
+
 </resources>

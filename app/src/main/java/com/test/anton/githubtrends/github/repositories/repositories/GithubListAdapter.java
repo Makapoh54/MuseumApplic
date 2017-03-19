@@ -1,15 +1,19 @@
-package com.test.anton.githubtrends;
+package com.test.anton.githubtrends.github.repositories.repositories;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.test.anton.githubtrends.R;
+import com.test.anton.githubtrends.github.repositories.users.UserDetailsActivity;
 import com.test.anton.githubtrends.model.Repository;
 import com.test.anton.githubtrends.utils.PicassoUtils;
 
@@ -42,25 +46,38 @@ public class GithubListAdapter extends RecyclerView.Adapter<GithubListAdapter.Vi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.list_iteam, parent, false);
+        View view = mInflater.inflate(R.layout.github_list_iteam, parent, false);
 
-        return new ViewHolder(view);
+        return new ViewHolder(view, new GithubListAdapter.ViewHolder.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                if (!TextUtils.isEmpty(mRepositoriesList.get(position).getTopContributorUrl())) {
+                    Intent intent = new Intent(mContext, UserDetailsActivity.class);
+                    intent.putExtra(UserDetailsActivity.USER_URL, mRepositoriesList.get(position).getTopContributorUrl());
+                    intent.putExtra(UserDetailsActivity.REPOSITORY_TITLE, mRepositoriesList.get(position).getName());
+                    mContext.startActivity(intent);
+                }
+            }
+        });
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Repository repo = mRepositoriesList.get(position);
-        if (!TextUtils.isEmpty(repo.getPhotoUrl())) {
-            PicassoUtils.loadCirclePhoto(mContext, repo.getPhotoUrl(),
+        if (!TextUtils.isEmpty(repo.getRepoLogoUrl())) {
+            PicassoUtils.loadCirclePhoto(mContext, repo.getRepoLogoUrl(),
                     mContext.getResources().getDimensionPixelSize(R.dimen.size_list_icon),
                     R.drawable.place_holder,
                     holder.mIcon);
         }
-        holder.mTitle.setText(repo.getTitle());
-        holder.mLanguage.setText(repo.getLanguage());
+        holder.mTitle.setText(repo.getName());
         holder.mContributions.setText(String.valueOf(repo.getContributorsCount()));
-        holder.mOrganisation.setText(repo.getOrganistaion());
-        holder.itemView.setOnClickListener(MainActivity.onCarerClickListener);
+        if (!TextUtils.isEmpty(repo.getLanguage())) {
+            holder.mLanguage.setText(repo.getLanguage());
+        }
+        if (!TextUtils.isEmpty(repo.getOrganization())) {
+            holder.mOrganisation.setText(repo.getOrganization());
+        }
     }
 
     @Override
@@ -74,8 +91,11 @@ public class GithubListAdapter extends RecyclerView.Adapter<GithubListAdapter.Vi
         return mRepositoriesList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        private OnItemClickListener mItemClickListener;
+        @BindView(R.id.rl_github_list_item)
+        RelativeLayout mItemLayout;
         @BindView(R.id.tv_repo_title)
         TextView mTitle;
         @BindView(R.id.tv_repo_lang)
@@ -87,22 +107,11 @@ public class GithubListAdapter extends RecyclerView.Adapter<GithubListAdapter.Vi
         @BindView(R.id.iv_repo_icon)
         ImageView mIcon;
 
-/*        private TextView mTitle;
-        private TextView mLanguage;
-        private TextView mContributions;
-        private TextView mOrganisation;
-        private ImageView mIcon;*/
-
-
-        public ViewHolder(View view) {
+        public ViewHolder(View view, OnItemClickListener onItemClickListener) {
             super(view);
             ButterKnife.bind(this, view);
-/*            mIcon = (ImageView) view.findViewById(R.id.iv_repo_icon);
-            mTitle = (TextView) view.findViewById(R.id.tv_repo_title);
-            mLanguage = (TextView) view.findViewById(R.id.tv_repo_lang);
-            mContributions = (TextView) view.findViewById(R.id.tv_repo_cont);
-            mOrganisation = (TextView) view.findViewById(R.id.tv_repo_org);*/
-
+            mItemClickListener = onItemClickListener;
+            mItemLayout.setOnClickListener(this);
         }
 
         /**
@@ -112,6 +121,15 @@ public class GithubListAdapter extends RecyclerView.Adapter<GithubListAdapter.Vi
         public void cancelRequest() {
             PicassoUtils.cancelRequest(mIcon);
             mIcon.setImageResource(R.drawable.place_holder);
+        }
+
+        @Override
+        public void onClick(View v) {
+            mItemClickListener.onItemClick(v, getAdapterPosition()); //OnItemClickListener mItemClickListener;
+        }
+
+        public static interface OnItemClickListener {
+            public void onItemClick(View view, int position);
         }
     }
 }

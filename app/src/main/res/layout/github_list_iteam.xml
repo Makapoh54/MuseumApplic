@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_github_list_item"
     android:layout_width="match_parent"
     android:layout_height="@dimen/height_list_tile">
 
@@ -10,23 +12,33 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_margin="@dimen/padding_list_icon"
-        android:src="@drawable/place_holder" />
+        android:src="@drawable/place_holder"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_toEndOf="@+id/iv_repo_icon"
-        android:paddingBottom="@dimen/padding_list_text"
         android:paddingEnd="@dimen/padding_list_text"
         android:paddingTop="@dimen/padding_list_text">
 
         <TextView
             android:id="@+id/tv_repo_title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_toStartOf="@+id/tv_repo_cont"
             android:text="@string/placeholder"
-            android:textSize="@dimen/ts_list_item_title" />
+            android:textColor="?android:textColorPrimary"
+            android:textSize="@dimen/ts_list_item_title"/>
+
+        <TextView
+            android:id="@+id/tv_repo_cont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tv_repo_title"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:textSize="@dimen/ts_list_item_content"/>
 
         <TextView
             android:id="@+id/tv_repo_lang"
@@ -34,33 +46,17 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/tv_repo_title"
             android:layout_below="@id/tv_repo_title"
-            android:text="@string/placeholder"
-            android:textSize="@dimen/ts_list_item_content" />
+            android:text="@string/list_item_no_language"
+            android:textSize="@dimen/ts_list_item_content"/>
 
-        <LinearLayout
+
+        <TextView
+            android:id="@+id/tv_repo_org"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignStart="@+id/tv_repo_title"
             android:layout_below="@+id/tv_repo_lang"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_repo_cont"
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/placeholder"
-                android:textSize="@dimen/ts_list_item_content" />
-
-
-            <TextView
-                android:id="@+id/tv_repo_org"
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ellipsize="middle"
-                android:text="@string/placeholder"
-                android:textSize="@dimen/ts_list_item_content" />
-        </LinearLayout>
+            android:text="@string/list_item_no_org"
+            android:textSize="@dimen/ts_list_item_content"/>
     </RelativeLayout>
 </RelativeLayout>
