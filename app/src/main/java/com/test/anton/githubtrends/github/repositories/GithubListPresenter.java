@@ -1,4 +1,4 @@
-package com.test.anton.githubtrends.github.repositories.repositories;
+package com.test.anton.githubtrends.github.repositories;
 
 import com.test.anton.githubtrends.data.GithubService;
 import com.test.anton.githubtrends.model.Contributor;
@@ -25,6 +25,11 @@ public class GithubListPresenter {
         mGithubService = githubService;
     }
 
+    /**
+     * retrieveRepositories gets top stared repositories, which are created during last 30 days;
+     * Then it get contributors list for each of this repositories (in a loop);
+     * After this it fills result object and send it back to the View;
+     */
     public void retrieveRepositories() {
         Map<String, String> options = new HashMap<>();
 
@@ -42,23 +47,28 @@ public class GithubListPresenter {
                     for (final ListIterator<Repository> i = result.listIterator(); i.hasNext(); ) {
                         final Repository element = i.next();
 
-                        mGithubService.getContributors(element.getContributors_url()).enqueue(new Callback<List<Contributor>>() {
+                        mGithubService.getContributors(element.getContributorsUrl()).enqueue(new Callback<List<Contributor>>() {
                             @Override
                             public void onResponse(Call<List<Contributor>> call, Response<List<Contributor>> response) {
+                                if (response.body() != null) {
+                                    List<Contributor> contributors = response.body();
+                                    element.setContributorsCount(contributors.size());
+                                    element.setTopContributorUrl(contributors.get(0).getUrl());
+                                    element.setRepoLogoUrl(element.getOwner().getAvatarUrl());
+                                    if (element.getOwner().getType().equals("Organization")) {
+                                        element.setOrganization(element.getOwner().getLogin());
+                                    }
 
-                                List<Contributor> contributors = response.body();
-                                element.setContributorsCount(contributors.size());
-                                element.setTopContributorUrl(contributors.get(0).getUrl());
-                                element.setRepoLogoUrl(element.getOwner().getAvatar_url());
-                                if (element.getOwner().getType().equals("Organization")) {
-                                    element.setOrganization(element.getOwner().getLogin());
+                                    i.set(element);
+
+                                    mRepositoryView.showRepositories(result);
+                                    mRepositoryView.onItemsLoadComplete();
+                                    Timber.i("Contributor was loaded from api");
+                                } else {
+                                    mRepositoryView.showRepositories(result);
+                                    mRepositoryView.onItemsLoadComplete();
+                                    Timber.e("Unable to load contributor data.");
                                 }
-
-                                i.set(element);
-
-                                mRepositoryView.showRepositories(result);
-                                mRepositoryView.onItemsLoadComplete();
-                                Timber.i("Contributor was loaded from api");
                             }
 
                             @Override

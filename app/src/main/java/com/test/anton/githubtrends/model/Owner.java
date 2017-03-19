@@ -1,32 +1,46 @@
 package com.test.anton.githubtrends.model;
 
 
-public class Owner {
-    private String avatar_url;
-    private String login;
-    private String type;
+import com.google.gson.annotations.SerializedName;
 
-    public String getAvatar_url() {
-        return avatar_url;
+import java.io.Serializable;
+
+public class Owner implements Serializable {
+
+    @SerializedName("avatar_url")
+    private String mAvatarUrl;
+    @SerializedName("login")
+    private String mLogin;
+    @SerializedName("type")
+    private String mType;
+
+    public Owner(String avatarUrl, String login, String type) {
+        mAvatarUrl = avatarUrl;
+        mLogin = login;
+        mType = type;
     }
 
-    public void setAvatar_url(String avatar_url) {
-        this.avatar_url = avatar_url;
+    public String getAvatarUrl() {
+        return mAvatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        mAvatarUrl = avatarUrl;
     }
 
     public String getLogin() {
-        return login;
+        return mLogin;
     }
 
     public void setLogin(String login) {
-        this.login = login;
+        mLogin = login;
     }
 
     public String getType() {
-        return type;
+        return mType;
     }
 
     public void setType(String type) {
-        this.type = type;
+        mType = type;
     }
 }

@@ -14,7 +14,6 @@ import retrofit2.http.Url;
 
 public interface GithubService {
 
-
     @GET("search/repositories")
     Call<Items> search(@QueryMap Map<String, String> options);
 

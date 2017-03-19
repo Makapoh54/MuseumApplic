@@ -1,14 +1,20 @@
 package com.test.anton.githubtrends.model;
 
 
-public class Contributor {
-    private String url;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class Contributor implements Serializable {
+
+    @SerializedName("url")
+    private String mUrl;
 
     public String getUrl() {
-        return url;
+        return mUrl;
     }
 
     public void setUrl(String url) {
-        this.url = url;
+        mUrl = url;
     }
 }

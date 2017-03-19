@@ -8,10 +8,15 @@
     <string name="list_item_no_org">No specific organisation</string>
 
     <!--Contributor Details-->
+    <string name="details_repo_title">Repository title</string>
+    <string name="details_name">Name</string>
     <string name="details_bio_title">Biography</string>
     <string name="details_no_bio">No Biography Specified</string>
     <string name="details_no_email">No Email Specified</string>
 
     <!--Error messages-->
     <string name="error_no_repositories">Error. Cannot retrieve repos list</string>
+    <string name="error_no_user">Error. Cannot retrieve user details</string>
+    <string name="network_error_no_connection">Error. No internet connection.</string>
+
 </resources>

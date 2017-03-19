@@ -18,7 +18,8 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="@dimen/padding_list_above"
             android:layout_marginTop="@dimen/padding_list_above"
-            android:paddingTop="@dimen/padding_list_above"
+            android:clickable="true"
+            android:focusable="true"
             android:scrollbars="vertical"/>
     </android.support.v4.widget.SwipeRefreshLayout>
 

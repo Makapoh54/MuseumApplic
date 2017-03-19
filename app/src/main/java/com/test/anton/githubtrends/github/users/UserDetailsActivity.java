@@ -1,4 +1,4 @@
-package com.test.anton.githubtrends.github.repositories.users;
+package com.test.anton.githubtrends.github.users;
 
 
 import android.os.Bundle;
@@ -19,6 +19,9 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import timber.log.Timber;
 
+/**
+ * UserDetailsActivity represents View in MVP design patern
+ */
 public class UserDetailsActivity extends AppCompatActivity implements UserDetailsContract.View {
     public static final String USER_URL = "USER_URL";
     public static final String REPOSITORY_TITLE = "REPOSITORY_TITLE";
@@ -54,16 +57,16 @@ public class UserDetailsActivity extends AppCompatActivity implements UserDetail
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mUnbinder.unbind();
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
         showProgress();
         mUserDetailsPresenter.retrieveDetails(mUserUrl);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mUnbinder.unbind();
     }
 
     @Override
@@ -76,7 +79,7 @@ public class UserDetailsActivity extends AppCompatActivity implements UserDetail
             mDetailsBio.setText(user.getBio());
         }
         mRepositoryTitle.setText(mRepoTitle);
-        PicassoUtils.loadCirclePhoto(this, user.getAvatar_url(),
+        PicassoUtils.loadCirclePhoto(this, user.getAvatarUrl(),
                 this.getResources().getDimensionPixelSize(R.dimen.size_details_icon),
                 R.drawable.place_holder,
                 mDetailsAvatar);
@@ -85,7 +88,8 @@ public class UserDetailsActivity extends AppCompatActivity implements UserDetail
 
     @Override
     public void showErrorMessage() {
-        Toast.makeText(this, R.string.error_no_repositories, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.error_no_user, Toast.LENGTH_SHORT).show();
+        hideProgress();
     }
 
     public void showProgress() {

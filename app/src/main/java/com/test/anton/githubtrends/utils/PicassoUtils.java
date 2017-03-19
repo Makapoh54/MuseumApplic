@@ -9,16 +9,6 @@ import com.squareup.picasso.Picasso;
 
 public class PicassoUtils {
 
-    /**
-     * Interface to call, when image is loaded by Picasso.
-     */
-    public interface OnImageLoadedListener {
-
-        void onSuccess();
-
-        void onError();
-    }
-
     public static void loadCirclePhoto(Context context, String path, int size, int placeHolder, final ImageView view) {
         if (!TextUtils.isEmpty(path)) {
             Picasso.with(context)

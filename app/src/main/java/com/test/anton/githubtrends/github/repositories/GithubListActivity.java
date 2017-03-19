@@ -1,4 +1,4 @@
-package com.test.anton.githubtrends.github.repositories.repositories;
+package com.test.anton.githubtrends.github.repositories;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.test.anton.githubtrends.R;
 import com.test.anton.githubtrends.caching.Injector;
 import com.test.anton.githubtrends.model.Repository;
+import com.test.anton.githubtrends.network.NetworkManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +23,11 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import timber.log.Timber;
 
+/**
+ * GithubListActivity represents View in MVP design pattern.
+ */
 public class GithubListActivity extends AppCompatActivity implements GithubContract.View {
 
-    public static View.OnClickListener onRepositoryClickListener;
     private GithubListAdapter mGithubListAdapter;
     private GithubListPresenter mGithubListPresenter;
     private ArrayList<Repository> mGithubData = new ArrayList<Repository>();
@@ -60,7 +63,12 @@ public class GithubListActivity extends AppCompatActivity implements GithubContr
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                refresh();
+                if (NetworkManager.getInstance().isConnected()) {
+                    refresh();
+                } else {
+                    Toast.makeText(mSwipeRefreshLayout.getContext(), R.string.network_error_no_connection, Toast.LENGTH_SHORT).show();
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
             }
         });
     }
@@ -84,7 +92,7 @@ public class GithubListActivity extends AppCompatActivity implements GithubContr
 
     @Override
     public void showErrorMessage() {
-        Toast.makeText( this, R.string.error_no_repositories, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.error_no_repositories, Toast.LENGTH_SHORT).show();
     }
 
     @Override

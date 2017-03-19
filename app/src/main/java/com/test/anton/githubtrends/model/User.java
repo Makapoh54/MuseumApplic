@@ -1,41 +1,50 @@
 package com.test.anton.githubtrends.model;
 
 
-public class User {
-    private String login;
-    private String avatar_url;
-    private String bio;
-    private String email;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class User implements Serializable {
+
+    @SerializedName("login")
+    private String mLogin;
+    @SerializedName("avatar_url")
+    private String mAvatarUrl;
+    @SerializedName("bio")
+    private String mBio;
+    @SerializedName("email")
+    private String mEmail;
 
     public String getLogin() {
-        return login;
+        return mLogin;
     }
 
     public void setLogin(String login) {
-        this.login = login;
+        mLogin = login;
     }
 
-    public String getAvatar_url() {
-        return avatar_url;
+    public String getAvatarUrl() {
+        return mAvatarUrl;
     }
 
-    public void setAvatar_url(String avatar_url) {
-        this.avatar_url = avatar_url;
+    public void setAvatarUrl(String avatarUrl) {
+        mAvatarUrl = avatarUrl;
     }
 
     public String getBio() {
-        return bio;
+        return mBio;
     }
 
     public void setBio(String bio) {
-        this.bio = bio;
+        mBio = bio;
     }
 
     public String getEmail() {
-        return email;
+        return mEmail;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        mEmail = email;
     }
 }

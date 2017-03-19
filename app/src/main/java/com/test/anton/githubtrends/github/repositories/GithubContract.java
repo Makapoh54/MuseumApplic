@@ -1,11 +1,11 @@
-package com.test.anton.githubtrends.github.repositories.repositories;
+package com.test.anton.githubtrends.github.repositories;
 
 import com.test.anton.githubtrends.model.Repository;
 
 import java.util.List;
 
 /**
- * The contract between the view and presenter
+ * The contract between the GithubList view and GithubList presenter
  */
 public interface GithubContract {
 

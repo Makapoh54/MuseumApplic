@@ -1,8 +1,9 @@
-package com.test.anton.githubtrends.github.repositories.users;
+package com.test.anton.githubtrends.github.users;
 
 import com.test.anton.githubtrends.model.User;
 
-public class UserDetailsContract {
+public interface UserDetailsContract {
+
     interface View {
         void showDetails(User repositories);
 

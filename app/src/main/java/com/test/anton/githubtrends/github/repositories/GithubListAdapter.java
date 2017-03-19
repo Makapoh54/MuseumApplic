@@ -1,5 +1,4 @@
-package com.test.anton.githubtrends.github.repositories.repositories;
-
+package com.test.anton.githubtrends.github.repositories;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.test.anton.githubtrends.R;
-import com.test.anton.githubtrends.github.repositories.users.UserDetailsActivity;
+import com.test.anton.githubtrends.github.users.UserDetailsActivity;
 import com.test.anton.githubtrends.model.Repository;
 import com.test.anton.githubtrends.utils.PicassoUtils;
 
@@ -46,7 +45,7 @@ public class GithubListAdapter extends RecyclerView.Adapter<GithubListAdapter.Vi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.github_list_iteam, parent, false);
+        View view = mInflater.inflate(R.layout.github_list_item, parent, false);
 
         return new ViewHolder(view, new GithubListAdapter.ViewHolder.OnItemClickListener() {
             @Override

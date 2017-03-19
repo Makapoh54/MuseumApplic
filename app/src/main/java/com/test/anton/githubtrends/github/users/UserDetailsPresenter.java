@@ -1,4 +1,4 @@
-package com.test.anton.githubtrends.github.repositories.users;
+package com.test.anton.githubtrends.github.users;
 
 import com.test.anton.githubtrends.data.GithubService;
 import com.test.anton.githubtrends.model.User;
