@@ -16,7 +16,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import timber.log.Timber;
 
-public class GithubListPresenter {
+public class GithubListPresenter{
     private final GithubContract.View mRepositoryView;
     private final GithubService mGithubService;
 
@@ -47,6 +47,11 @@ public class GithubListPresenter {
                     for (final ListIterator<Repository> i = result.listIterator(); i.hasNext(); ) {
                         final Repository element = i.next();
 
+                        element.setRepoLogoUrl(element.getOwner().getAvatarUrl());
+                        if (element.getOwner().getType().equals("Organization")) {
+                            element.setOrganization(element.getOwner().getLogin());
+                        }
+
                         mGithubService.getContributors(element.getContributorsUrl()).enqueue(new Callback<List<Contributor>>() {
                             @Override
                             public void onResponse(Call<List<Contributor>> call, Response<List<Contributor>> response) {
@@ -54,10 +59,6 @@ public class GithubListPresenter {
                                     List<Contributor> contributors = response.body();
                                     element.setContributorsCount(contributors.size());
                                     element.setTopContributorUrl(contributors.get(0).getUrl());
-                                    element.setRepoLogoUrl(element.getOwner().getAvatarUrl());
-                                    if (element.getOwner().getType().equals("Organization")) {
-                                        element.setOrganization(element.getOwner().getLogin());
-                                    }
 
                                     i.set(element);
 
@@ -73,6 +74,7 @@ public class GithubListPresenter {
 
                             @Override
                             public void onFailure(Call<List<Contributor>> call, Throwable t) {
+                                mRepositoryView.showRepositories(result);
                                 mRepositoryView.showErrorMessage();
                                 Timber.e(t, "Unable to load contributor data.");
                             }
