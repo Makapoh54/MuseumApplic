@@ -17,12 +17,6 @@ public class NetworkManager {
         return sOurInstance;
     }
 
-    /**
-     * Returns current network status.
-     *
-     * @param context
-     * @return
-     */
     public synchronized NetworkStatus getNetworkStatus(Context context) {
         mStatus = NetworkStatus.NOT_CONNECTED;
 
@@ -50,11 +44,6 @@ public class NetworkManager {
         return mStatus;
     }
 
-    /**
-     * Is the app currently connected to the network?
-     *
-     * @return
-     */
     public synchronized boolean isConnected() {
         return getNetworkStatus(CustomApplication.getInstance().getAppContext()) != NetworkStatus.NOT_CONNECTED;
     }

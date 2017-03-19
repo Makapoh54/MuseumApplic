@@ -28,11 +28,6 @@ public class CustomApplication extends Application {
         return sCustomApplication;
     }
 
-    /**
-     * Returns app context.
-     *
-     * @return
-     */
     public Context getAppContext() {
         return mAppContext;
     }

@@ -36,13 +36,13 @@ public class UserDetailsUnitTest {
     GithubService mGithubService;
 
     @Mock
-    Call<User> mockCall;
+    Call<User> mMockCall;
 
     @Mock
-    ResponseBody responseBody;
+    ResponseBody mResponseBody;
 
     @Captor
-    ArgumentCaptor<Callback<User>> argumentCaptor;
+    ArgumentCaptor<Callback<User>> mArgumentCaptor;
 
     @Before
     public void setUp() {
@@ -54,39 +54,39 @@ public class UserDetailsUnitTest {
 
     @Test
     public void retrieveDetailsGoodRequest() {
-        when(mGithubService.getUser(mUserUrl)).thenReturn(mockCall);
+        when(mGithubService.getUser(mUserUrl)).thenReturn(mMockCall);
         Response<User> res = Response.success(mUser);
 
         mUserDetailsPresenter.retrieveDetails(mUserUrl);
 
-        verify(mockCall).enqueue(argumentCaptor.capture());
-        argumentCaptor.getValue().onResponse(null, res);
+        verify(mMockCall).enqueue(mArgumentCaptor.capture());
+        mArgumentCaptor.getValue().onResponse(null, res);
 
         verify(mUserView).showDetails(mUser);
     }
 
     @Test
     public void retrieveDetailsBadRequest() {
-        when(mGithubService.getUser(mUserUrl)).thenReturn(mockCall);
-        Response<User> res = Response.error(500, responseBody);
+        when(mGithubService.getUser(mUserUrl)).thenReturn(mMockCall);
+        Response<User> res = Response.error(500, mResponseBody);
 
         mUserDetailsPresenter.retrieveDetails(mUserUrl);
 
-        verify(mockCall).enqueue(argumentCaptor.capture());
-        argumentCaptor.getValue().onResponse(null, res);
+        verify(mMockCall).enqueue(mArgumentCaptor.capture());
+        mArgumentCaptor.getValue().onResponse(null, res);
 
         verifyZeroInteractions(mUserView);
     }
 
     @Test
     public void retrieveDetailsErrorMessageCheck() {
-        when(mGithubService.getUser(mUserUrl)).thenReturn(mockCall);
+        when(mGithubService.getUser(mUserUrl)).thenReturn(mMockCall);
         Throwable throwable = new Throwable(new RuntimeException());
 
         mUserDetailsPresenter.retrieveDetails(mUserUrl);
 
-        verify(mockCall).enqueue(argumentCaptor.capture());
-        argumentCaptor.getValue().onFailure(null, throwable);
+        verify(mMockCall).enqueue(mArgumentCaptor.capture());
+        mArgumentCaptor.getValue().onFailure(null, throwable);
 
         verify(mUserView).showErrorMessage();
     }

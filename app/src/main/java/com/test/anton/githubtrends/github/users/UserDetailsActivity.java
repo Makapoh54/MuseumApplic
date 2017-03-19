@@ -20,7 +20,7 @@ import butterknife.Unbinder;
 import timber.log.Timber;
 
 /**
- * UserDetailsActivity represents View in MVP design patern
+ * UserDetailsActivity represents View in MVP design pattern
  */
 public class UserDetailsActivity extends AppCompatActivity implements UserDetailsContract.View {
     public static final String USER_URL = "USER_URL";
