@@ -80,6 +80,12 @@ public class GithubListActivity extends AppCompatActivity implements GithubContr
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        mGithubListPresenter.cancelRetrieveRepositories();
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         mUnbinder.unbind();

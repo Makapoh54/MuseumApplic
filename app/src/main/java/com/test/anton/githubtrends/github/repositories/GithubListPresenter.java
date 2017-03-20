@@ -16,9 +16,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import timber.log.Timber;
 
-public class GithubListPresenter{
+public class GithubListPresenter {
     private final GithubContract.View mRepositoryView;
     private final GithubService mGithubService;
+    private Call<Items> mSearchCall;
 
     public GithubListPresenter(GithubContract.View repositoryView, GithubService githubService) {
         mRepositoryView = repositoryView;
@@ -38,7 +39,9 @@ public class GithubListPresenter{
         options.put("sort", "stars");
         options.put("order", "desc");
 
-        mGithubService.search(options).enqueue(new Callback<Items>() {
+        mSearchCall = mGithubService.search(options);
+
+        mSearchCall.enqueue(new Callback<Items>() {
             @Override
             public void onResponse(Call<Items> call, Response<Items> response) {
                 if (response.isSuccessful()) {
@@ -95,4 +98,10 @@ public class GithubListPresenter{
         });
     }
 
+    public void cancelRetrieveRepositories() {
+        //TODO check nested request behaviour
+        if (mSearchCall.isExecuted()) {
+            mSearchCall.cancel();
+        }
+    }
 }

@@ -11,6 +11,7 @@ import timber.log.Timber;
 public class UserDetailsPresenter {
     private final UserDetailsContract.View mDetailsView;
     private final GithubService mGithubService;
+    private Call<User> mCall;
 
     public UserDetailsPresenter(UserDetailsContract.View detailsView, GithubService githubService) {
         mDetailsView = detailsView;
@@ -18,23 +19,31 @@ public class UserDetailsPresenter {
     }
 
     public void retrieveDetails(String url) {
-
-        mGithubService.getUser(url).enqueue(new Callback<User>() {
+        mCall = mGithubService.getUser(url);
+        mCall.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
                     mDetailsView.showDetails(response.body());
-
                     Timber.i("User details were loaded from api.");
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                mDetailsView.showErrorMessage();
-                Timber.e(t, "Unable to load user details data.");
+                if (!mCall.isCanceled()) {
+                    mDetailsView.showErrorMessage();
+                    Timber.e(t, "Unable to load user details data.");
+                } else {
+                    Timber.e(t, "User data request was cancelled.");
+                }
             }
         });
     }
 
+    public void cancelretrieveDetails() {
+        if (mCall.isExecuted()) {
+            mCall.cancel();
+        }
+    }
 }

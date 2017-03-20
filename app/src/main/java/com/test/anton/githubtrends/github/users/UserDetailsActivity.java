@@ -2,6 +2,7 @@ package com.test.anton.githubtrends.github.users;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -64,13 +65,19 @@ public class UserDetailsActivity extends AppCompatActivity implements UserDetail
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        mUserDetailsPresenter.cancelretrieveDetails();
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         mUnbinder.unbind();
     }
 
     @Override
-    public void showDetails(User user) {
+    public void showDetails(@NonNull User user) {
         mDetailsName.setText(user.getLogin());
         if (!TextUtils.isEmpty(user.getEmail())) {
             mDetailsEmail.setText(user.getEmail());
