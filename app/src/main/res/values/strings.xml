@@ -1,22 +1,25 @@
 <resources>
-    <string name="app_name">GithubTrends</string>
+    <string name="app_name">MuseumApp</string>
 
     <string name="placeholder">Placeholder</string>
 
-    <!--GithubList item-->
-    <string name="list_item_no_language">No specific language</string>
-    <string name="list_item_no_org">No specific organisation</string>
+    <!--Exhibitions List-->
+    <string name="collapsing_image_title">LATVIAN ART &amp; CULTURE</string>
+    <string name="collapsing_toolbar_title">Museum of Fine Arts</string>
+    <string name="current_exhibitions">Current exhibitions</string>
 
-    <!--Contributor Details-->
-    <string name="details_repo_title">Repository title</string>
-    <string name="details_name">Name</string>
-    <string name="details_bio_title">Biography</string>
-    <string name="details_no_bio">No Biography Specified</string>
-    <string name="details_no_email">No Email Specified</string>
 
     <!--Error messages-->
     <string name="error_no_repositories">Error. Cannot retrieve repos list</string>
     <string name="error_no_user">Error. Cannot retrieve user details</string>
     <string name="network_error_no_connection">Error. No internet connection.</string>
+
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Pri quas audiam virtute ut, case utamur fuisset eam ut, iisque accommodare an eam. Reque blandit qui eu, cu vix nonumy volumus. Legendos intellegam id usu, vide oporteat vix eu, id illud principes has. Nam tempor utamur gubergren no.
+
+Ex soleat habemus usu, te nec eligendi deserunt vituperata. Natum consulatu vel ea, duo cetero repudiare efficiendi cu. Has at quas nonumy facilisis, enim percipitur mei ad. Mazim possim adipisci sea ei, omnium aeterno platonem mei no.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
 
 </resources>

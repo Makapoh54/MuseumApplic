@@ -3,23 +3,45 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <!--Github List Dimensions-->
-    <dimen name="height_list_tile">88dp</dimen>
-    <dimen name="padding_list_text">16dp</dimen>
+    <!--Exhibitions List Dimensions-->
+    <dimen name="height_appbar">220dp</dimen>
     <dimen name="size_list_icon">64dp</dimen>
-    <dimen name="padding_list_icon">16dp</dimen>
     <dimen name="padding_list_above">8dp</dimen>
+    <dimen name="padding_list_exhibition">40dp</dimen>
+    <dimen name="header_text_padding">16dp</dimen>
+    <dimen name="header_text_padding_top">32dp</dimen>
 
-    <!--Github List TextSizes-->
-    <dimen name="ts_list_item_title">16sp</dimen>
-    <dimen name="ts_list_item_content">14sp</dimen>
+    <!--Exhibitions List TextSizes-->
+    <dimen name="ts_appbar_image_title">20sp</dimen>
+    <dimen name="ts_header_text">24sp</dimen>
 
-    <!--Top Contributor Activity Dimensions-->
-    <dimen name="size_details_icon">96dp</dimen>
-    <dimen name="margin_details_text">16dp</dimen>
+    <!--Exhibition List CardView-->
+    <dimen name="margin_exhibition_item">10dp</dimen>
+    <dimen name="height_exhibition_image">220dp</dimen>
+    <dimen name="margin_exhibition_text_top">12dp</dimen>
 
-    <!--Top Contributor Activity TextSizes-->
-    <dimen name="ts_details_title">16sp</dimen>
-    <dimen name="ts_details_content">14sp</dimen>
+    <!--Exhibitions Details-->
+    <dimen name="height_details_image">260dp</dimen>
+    <dimen name="padding_details_description_bottom">16dp</dimen>
+    <dimen name="padding_details_description_top">32dp</dimen>
+    <dimen name="padding_details_items_count_right">4dp</dimen>
+    <dimen name="height_horizontal_item_gallery">400dp</dimen>
 
+    <!--Item Details-->
+    <dimen name="peek_height_bottom_bar">240dp</dimen>
+    <dimen name="collapsed_peek_height_bottom_bar">70dp</dimen>
+    <dimen name="padding_bottom_bar">16dp</dimen>
+    <dimen name="padding_text_bottom_bar">8dp</dimen>
+
+
+
+
+    <!--Horizontal Gallery-->
+    <dimen name="padding_gallery_picture">3dp</dimen>
+
+    <!--Expandable TV-->
+    <dimen name="margin_expandable_text">16dp</dimen>
+
+    <!--Expandable TV TextSizes-->
+    <dimen name="ts_expandable_text_view">16sp</dimen>
 </resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/exhibition_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/header_text_padding"
+        android:paddingLeft="@dimen/header_text_padding"
+        android:paddingRight="@dimen/header_text_padding"
+        android:paddingTop="@dimen/header_text_padding_top"
+        android:text="@string/current_exhibitions"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/ts_header_text"/>
+</LinearLayout>
