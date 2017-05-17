@@ -22,6 +22,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 import static com.test.anton.museumapp.model.Exhibition.EXHIBITION;
 
@@ -61,6 +62,7 @@ public class ExhibitionsListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             viewHolder = new ItemViewHolder(view, new ExhibitionsListAdapter.ItemViewHolder.OnItemClickListener() {
                 @Override
                 public void onItemClick(View view, int position) {
+                    Timber.i("ExhibitionsListAdapter item clicked: " + position);
                     Intent intent = new Intent(mContext, ExhibitionDetailsActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable(EXHIBITION, mExhibitionsList.get(position));
@@ -149,8 +151,8 @@ public class ExhibitionsListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             mItemClickListener.onItemClick(v, getAdapterPosition()); //OnItemClickListener mItemClickListener;
         }
 
-        public static interface OnItemClickListener {
-            public void onItemClick(View view, int position);
+        public interface OnItemClickListener {
+            void onItemClick(View view, int position);
         }
     }
 

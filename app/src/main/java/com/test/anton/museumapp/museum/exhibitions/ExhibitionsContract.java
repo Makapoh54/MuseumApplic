@@ -15,7 +15,5 @@ public interface ExhibitionsContract {
         void showErrorMessage();
 
         void refresh();
-
-        void onItemsLoadComplete();
     }
 }

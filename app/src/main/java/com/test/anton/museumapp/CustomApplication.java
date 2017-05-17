@@ -3,6 +3,8 @@ package com.test.anton.museumapp;
 import android.app.Application;
 import android.content.Context;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 import timber.log.Timber;
 
 public class CustomApplication extends Application {
@@ -20,6 +22,8 @@ public class CustomApplication extends Application {
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
         }
+
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         Timber.d("Application Created");
     }

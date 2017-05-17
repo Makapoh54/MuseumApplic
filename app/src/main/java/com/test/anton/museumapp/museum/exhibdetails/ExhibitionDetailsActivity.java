@@ -79,13 +79,6 @@ public class ExhibitionDetailsActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        //showProgress();
-        // mExhibitionDetailsPresenter.retrieveDetails(mUserUrl);
-    }
-
-    @Override
     protected void onPause() {
         super.onPause();
     }

@@ -1,36 +1,23 @@
 package com.test.anton.museumapp.museum.itemdetails;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.*;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.AttributeSet;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import com.github.chrisbanes.photoview.PhotoView;
-import com.github.chrisbanes.photoview.PhotoViewAttacher;
 import com.squareup.picasso.Picasso;
 import com.test.anton.museumapp.R;
-import com.test.anton.museumapp.model.Exhibition;
 import com.test.anton.museumapp.model.Item;
-import com.test.anton.museumapp.museum.exhibitions.ExhibitionsContract;
-import com.test.anton.museumapp.museum.exhibitions.ExhibitionsListAdapter;
-import com.test.anton.museumapp.museum.exhibitions.ExhibitionsListPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 import timber.log.Timber;
 
-import static com.test.anton.museumapp.model.Exhibition.EXHIBITION;
 
 public class ItemDetailsActivity extends AppCompatActivity implements ItemDetailsContract.View {
 
@@ -61,33 +48,11 @@ public class ItemDetailsActivity extends AppCompatActivity implements ItemDetail
     private BottomSheetBehavior mBottomSheetBehavior;
     private ItemDetailsPresenter mItemDetailsPresenter;
 
-
-    @Override
-    public void onBackPressed() {
-        switch (mBottomSheetBehavior.getState()) {
-            case (BottomSheetBehavior.STATE_HIDDEN):
-                mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                mPhotoView.setScale(mPhotoView.getMinimumScale());
-                break;
-            case (BottomSheetBehavior.STATE_EXPANDED):
-                mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                mPhotoView.setScale(mPhotoView.getMinimumScale());
-                break;
-            case (BottomSheetBehavior.STATE_COLLAPSED):
-                if (mPhotoView.getScale() != mPhotoView.getMinimumScale()) {
-                    mPhotoView.setScale(mPhotoView.getMinimumScale());
-                } else {
-                    super.onBackPressed();
-                }
-                break;
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_details);
-        Timber.i("ExhibitionsListActivity created");
+        Timber.i("ItemDetailsActivity created");
         mUnbinder = ButterKnife.bind(this);
 
         Intent intent = this.getIntent();
@@ -120,6 +85,27 @@ public class ItemDetailsActivity extends AppCompatActivity implements ItemDetail
         mBottomSheetBehavior.setHideable(true);
         mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         mBottomSheetBehavior.setHideable(false);
+    }
+
+    @Override
+    public void onBackPressed() {
+        switch (mBottomSheetBehavior.getState()) {
+            case (BottomSheetBehavior.STATE_HIDDEN):
+                mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                mPhotoView.setScale(mPhotoView.getMinimumScale());
+                break;
+            case (BottomSheetBehavior.STATE_EXPANDED):
+                mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                mPhotoView.setScale(mPhotoView.getMinimumScale());
+                break;
+            case (BottomSheetBehavior.STATE_COLLAPSED):
+                if (mPhotoView.getScale() != mPhotoView.getMinimumScale()) {
+                    mPhotoView.setScale(mPhotoView.getMinimumScale());
+                } else {
+                    super.onBackPressed();
+                }
+                break;
+        }
     }
 
     @Override

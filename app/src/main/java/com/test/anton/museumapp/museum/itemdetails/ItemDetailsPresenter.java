@@ -1,11 +1,8 @@
 package com.test.anton.museumapp.museum.itemdetails;
 
 
-import com.google.firebase.database.DataSnapshot;
 import com.test.anton.museumapp.database.FirebaseDb;
 import com.test.anton.museumapp.model.Item;
-
-import static com.test.anton.museumapp.database.Snapshot.toExhibitions;
 
 public class ItemDetailsPresenter {
     private final ItemDetailsContract.View mItemDetailsView;

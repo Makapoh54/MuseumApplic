@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.test.anton.museumapp.R;
-import com.test.anton.museumapp.model.ItemImage;
 import com.test.anton.museumapp.museum.itemdetails.ItemDetailsActivity;
 import com.test.anton.museumapp.utils.PicassoUtils;
 
@@ -22,7 +21,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import timber.log.Timber;
 
-import static android.media.CamcorderProfile.get;
 import static com.test.anton.museumapp.museum.itemdetails.ItemDetailsActivity.ITEM_ID;
 import static com.test.anton.museumapp.museum.itemdetails.ItemDetailsActivity.ITEM_IMAGE;
 
@@ -118,8 +116,8 @@ public class ItemsGalleryAdapter extends RecyclerView.Adapter<ItemsGalleryAdapte
             mItemClickListener.onItemClick(v, getAdapterPosition()); //OnItemClickListener mItemClickListener;
         }
 
-        public static interface OnItemClickListener {
-            public void onItemClick(View view, int position);
+        public interface OnItemClickListener {
+            void onItemClick(View view, int position);
         }
     }
 }

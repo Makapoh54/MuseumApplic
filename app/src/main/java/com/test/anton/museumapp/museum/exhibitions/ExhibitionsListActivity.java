@@ -65,12 +65,6 @@ public class ExhibitionsListActivity extends AppCompatActivity implements Exhibi
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        mExhibitionsListPresenter.cancelRetrieveRepositories();
-    }
-
-    @Override
     public void onDestroy() {
         super.onDestroy();
         mUnbinder.unbind();
@@ -92,9 +86,6 @@ public class ExhibitionsListActivity extends AppCompatActivity implements Exhibi
         mExhibitionsListPresenter.retrieveExhibitions();
     }
 
-    @Override
-    public void onItemsLoadComplete() {
-    }
 
     public void showProgress() {
         mProgressBar.setVisibility(View.VISIBLE);
